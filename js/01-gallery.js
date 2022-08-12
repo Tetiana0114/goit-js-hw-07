@@ -1,8 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-
 const galleryEl = document.querySelector(".gallery");
-const imgEl = document.querySelectorAll("img");
+
 galleryEl.addEventListener("click", getImgOriginal);
 
 const imgElements = galleryItems
@@ -22,12 +21,22 @@ function getImgOriginal(event) {
     event.preventDefault();
     if (event.target.nodeName !== "IMG") {
         return;
-    } else {
-        imgEl.src = event.target.dataset.source;
-        // console.log(imgEl.src);
-
-        const openModalImg = basicLightbox.create(`<img src="${imgEl.src}" width="800" height="600"/>`);
-        openModalImg.show();
-        console.log(openModalImg);
-    }
+    } 
+    const imgEl = document.querySelectorAll("img");
+    imgEl.src = event.target.dataset.source;
+    // console.log(imgEl.src);
+    const openModalImg = basicLightbox.create(`<img src="${imgEl.src}" width="800" height="600"/>`);
+    openModalImg.show();
+    console.log(openModalImg);
 }
+
+window.addEventListener("keydown", (e) => {
+    const openModal = document.querySelector('.basicLightbox');
+    if (!openModal) {
+        return;
+    }
+    if (e.code === 'Escape') {
+        openModal.remove()
+        // console.log(e);
+    } 
+})
