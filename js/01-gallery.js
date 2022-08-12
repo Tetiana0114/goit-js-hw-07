@@ -1,7 +1,10 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-// Task 1
+
 const galleryEl = document.querySelector(".gallery");
+const imgEl = document.querySelectorAll("img");
+galleryEl.addEventListener("click", getImgOriginal);
+
 const imgElements = galleryItems
   .map(({ original, preview, description }) => 
     `<div class="gallery__item">
@@ -13,18 +16,18 @@ const imgElements = galleryItems
 
 galleryEl.insertAdjacentHTML("beforeend", imgElements);
 // console.log(galleryEl);
-console.log(galleryItems);
-
-// Task 2
-galleryEl.addEventListener("click", getImgOriginal);
+// console.log(galleryItems);
 
 function getImgOriginal(event) {
     event.preventDefault();
     if (event.target.nodeName !== "IMG") {
         return;
     } else {
-        const imgTag = document.querySelectorAll("img");
-        imgTag.src = event.target.dataset.source;
-        // console.log(imgTag.src);
+        imgEl.src = event.target.dataset.source;
+        // console.log(imgEl.src);
+
+        const openModalImg = basicLightbox.create(`<img src="${imgEl.src}" width="800" height="600"/>`);
+        openModalImg.show();
+        console.log(openModalImg);
     }
 }
