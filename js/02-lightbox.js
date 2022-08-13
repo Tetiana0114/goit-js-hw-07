@@ -10,4 +10,9 @@ const imgElements = galleryItems
   ).join('');
 
 galleryEl.insertAdjacentHTML("beforeend", imgElements);
-// console.log(galleryItems);
+console.log(galleryItems);
+
+let lightboxGallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
